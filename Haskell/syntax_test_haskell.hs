@@ -293,3 +293,8 @@ main = do
 
    a' = b'
 -- ^^ meta.name.haskell - string
+
+   deriving instance FromJSON Amount
+-- ^^^^^^^^ keyword.declaration.haskell
+   deriving instance FromJSON Ask
+--          ^^^^^^^^ keyword.declaration.haskell
