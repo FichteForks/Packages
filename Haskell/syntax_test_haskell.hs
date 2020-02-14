@@ -293,3 +293,31 @@ main = do
 
    a' = b'
 -- ^^ meta.name.haskell - string
+
+  data Outrageous =
+      Flipper Record
+    | Int :! Int
+    | Double :@ Double
+--            ^ keyword.operator.haskell
+    | Int `Quux` Double
+    | String :# Record
+--            ^ keyword.operator.haskell
+    | Simple :$ Outrageous
+    | DontDoThis { outrageousInt :: Int, outrageousString :: String }
+      deriving (Eq, Ord, Generic)
+      deriving (Read, Show) via (Quiet Outrageous)
+
+  genOutrageous :: Gen Outrageous
+  genOutrageous =
+    Gen.recursive Gen.choice [
+        Flipper <$> genRecord
+      , (:!) <$> genInt <*> genInt
+      , (:@) <$> genDouble <*> genDouble
+--       ^^ meta.sequence.haskell variable.function.infix.haskell keyword.operator.haskell
+      , Quux <$> genInt <*> genDouble
+      , (:#) <$> genString <*> genRecord
+--       ^^ meta.sequence.haskell variable.function.infix.haskell keyword.operator.haskell
+      , DontDoThis <$> genInt <*> genString
+      ] [
+        Gen.subtermM genOutrageous (\x -> (:$) <$> genSimple <*> pure x)
+      ]
