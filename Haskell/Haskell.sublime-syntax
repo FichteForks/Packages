@@ -53,28 +53,6 @@ contexts:
     - match: ','
       scope: punctuation.separator.comma.haskell
 
-  group:
-    - match: \(
-      scope: punctuation.section.group.begin.haskell
-      push:
-        - meta_scope: meta.group.haskell
-        - match: \)
-          scope: punctuation.section.group.end.haskell
-          pop: true
-        - include: expression
-
-  list:
-    - match: \[
-      scope: punctuation.section.sequence.begin.haskell
-      push:
-        - meta_scope: meta.sequence.haskell
-        - match: \]
-          scope: punctuation.section.sequence.end.haskell
-          pop: true
-        - match: ','
-          scope: punctuation.separator.sequence.haskell
-        - include: expression
-
   constant:
     - match: \(\)
       scope: constant.language.unit.haskell

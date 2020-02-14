@@ -211,22 +211,6 @@ main = do
     return ()
 --  ^^^^^^ keyword.control.flow.return.haskell
 
---MISC
-
-    (group)
---  ^^^^^^^ meta.group.haskell
---  ^ punctuation.section.group.begin.haskell
---        ^ punctuation.section.group.end.haskell
-
-    [1,2]
---  ^^^^^ meta.sequence.haskell
---  ^ punctuation.section.sequence.begin.haskell
---   ^ constant.numeric.integer.decimal.haskell
---    ^ punctuation.separator.sequence.haskell
---     ^ constant.numeric.integer.decimal.haskell
---      ^ punctuation.section.sequence.end.haskell
-
-
 --NUMBERS
 
     0
